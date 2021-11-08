@@ -28,12 +28,12 @@ artikels.forEach(newspaper => {
             $('a:contains("MyRepublic")', html).each(function () {
                 const title = $(this).text()
                 const url = $(this).attr('href')
-
-                articles.push({
-                    title,
-                    url: newspaper.base + url,
-                    source: newspaper.name
-                })
+                if (url !== 'https://mediakonsumen.com/tag/myrepublic')
+                    articles.push({
+                        title,
+                        url: newspaper.base + url,
+                        source: newspaper.name
+                    })
             })
 
         })
@@ -41,6 +41,7 @@ artikels.forEach(newspaper => {
 
 app.get('/', (req, res) => {
     res.json(articles)
+    console.log(articles)
 })
 
 app.get('/artikel/:artikelsId', (req, res) => {
@@ -66,6 +67,7 @@ app.get('/artikel/:artikelsId', (req, res) => {
                 })
             })
             res.json(specificArticles)
+            console.log(specificArticles)
         }).catch(err => console.log(err))
 })
 
