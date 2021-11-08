@@ -9,6 +9,11 @@ const artikels = [
         name: 'media',
         address: 'https://mediakonsumen.com/?s=myrepublic#gsc.tab=0',
         base: ''
+    },
+    {
+        name: 'detik',
+        address: 'detik',
+        base: ''
     }
 ]
 
@@ -20,7 +25,7 @@ artikels.forEach(newspaper => {
             const html = response.data
             const $ = cheerio.load(html)
 
-            $('a:contains("MyRepublic")', html).each(function () {
+            $('a:contains("Covid")', html).each(function () {
                 const title = $(this).text()
                 const url = $(this).attr('href')
 
@@ -51,7 +56,7 @@ app.get('/artikel/:artikelsId', (req, res) => {
             const $ = cheerio.load(html)
             const specificArticles = []
 
-            $('a:contains("MyRepublic")', html).each(function () {
+            $('a:contains("Covid")', html).each(function () {
                 const title = $(this).text()
                 const url = $(this).attr('href')
                 specificArticles.push({
