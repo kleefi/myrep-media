@@ -7,7 +7,7 @@ const app = express()
 const artikels = [
     {
         name: 'media',
-        address: 'https://mediakonsumen.com/?s=myrepublic#gsc.tab=0',
+        address: 'https://mediakonsumen.com/?s=first+media#gsc.tab=0',
         base: ''
     },
     {
@@ -25,10 +25,10 @@ artikels.forEach(newspaper => {
             const html = response.data
             const $ = cheerio.load(html)
 
-            $('a:contains("MyRepublic")', html).each(function () {
+            $('a:contains("First Media")', html).each(function () {
                 const title = $(this).text()
                 const url = $(this).attr('href')
-                if (url !== 'https://mediakonsumen.com/tag/myrepublic')
+                if (url !== 'https://mediakonsumen.com/tag/first-media')
                     articles.push({
                         title,
                         url: newspaper.base + url,
